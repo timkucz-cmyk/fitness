@@ -21,5 +21,7 @@ Web-App für Krafttraining mit dem eigenen Körpergewicht: Wochenziel statt Stre
 | `exercises.js` | Übungen, Leitern, Aufwärmen, Dehnen, Tests |
 | `figures.js` | Animierte Strichfiguren |
 | `sw.js`, `manifest.webmanifest` | Offline-Betrieb und Installation |
+| `fonts/` | IBM Plex Sans/Mono (woff2, Latin, SIL OFL – `fonts/OFL.txt`) |
+| `DESIGN.md`, `design/` | Designvorgabe „B · Instrument“ und Referenz-Entwürfe |
 
 Nach Änderungen an den Dateien in `sw.js` die `VERSION` erhöhen, damit installierte Apps die neue Fassung laden.
