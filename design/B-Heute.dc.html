@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>B Instrument – Heute</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3FD5E8}a:hover{color:#8BE7F2}
+</style>
+</helmet>
+<div style="width: 390px; height: 1420px; box-sizing: border-box; background: {{rootBg}}; color: #E6EDF3; font-family: 'IBM Plex Sans', system-ui, sans-serif; display: flex; flex-direction: column; gap: 12px; padding: 24px 16px 0">
+  <header style="display: flex; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8; letter-spacing: 0.04em">SO 01.11. · 05:04</p>
+      <h1 style="margin: 0; font-size: 26px; font-weight: 600">Guten Morgen</h1>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: flex-end; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">
+      <span>BLOCK <b style="color: #E6EDF3">02</b></span>
+      <span>WOCHE <b style="color: #E6EDF3">3/6</b></span>
+    </div>
+  </header>
+
+  <sc-if value="{{showBlock}}" hint-placeholder-val="{{ true }}">
+    <section aria-label="Block-Zeitleiste" style="display: flex; flex-direction: column; gap: 6px">
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px">
+        <sc-for list="{{weeks}}" as="w" hint-placeholder-count="6">
+          <div style="display: flex; flex-direction: column; gap: 4px; align-items: center">
+            <span style="width: 100%; height: 6px; border-radius: 3px; background: {{w.bg}}; box-shadow: {{w.shadow}}"></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: {{w.fg}}">{{w.label}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Wochenziel</h2>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">noch 1</span>
+    </div>
+    <sc-if value="{{goalSegments}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: baseline; gap: 10px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 64px; line-height: 1; font-weight: 500; color: {{accent}}; text-shadow: {{textGlow}}">2</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #8B9AA8">/ 3 Einheiten</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px">
+          <span style="height: 10px; border-radius: 3px; background: {{segBg}}; box-shadow: {{segShadow}}"></span>
+          <span style="height: 10px; border-radius: 3px; background: {{segBg}}; box-shadow: {{segShadow}}"></span>
+          <span style="height: 10px; border-radius: 3px; background: #1F2B36"></span>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{goalArc}}" hint-placeholder-val="{{ false }}">
+      <div style="position: relative; height: 128px; display: flex; justify-content: center">
+        <svg viewBox="0 0 220 120" width="260" height="142" fill="none" role="img" aria-label="Wochenziel: 2 von 3 Einheiten">
+          <defs><linearGradient id="arcB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{{accentDeep}}"></stop><stop offset="1" stop-color="{{accentLight}}"></stop></linearGradient></defs>
+          <path d="M20 110 A90 90 0 0 1 200 110" stroke="#1F2B36" stroke-width="14" stroke-linecap="round"></path>
+          <path d="M20 110 A90 90 0 0 1 200 110" stroke="url(#arcB)" stroke-width="14" stroke-linecap="round" stroke-dasharray="188.5 400"></path>
+          <line x1="155" y1="32" x2="149" y2="42" stroke="#3A4B5A" stroke-width="2"></line>
+          <line x1="65" y1="32" x2="71" y2="42" stroke="#3A4B5A" stroke-width="2"></line>
+        </svg>
+        <div style="position: absolute; bottom: 0; display: flex; flex-direction: column; align-items: center">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 48px; line-height: 1; font-weight: 500; color: {{accent}}; text-shadow: {{textGlow}}">2<span style="font-size: 22px; color: #8B9AA8">/3</span></span>
+          <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8">EINHEITEN</small>
+        </div>
+      </div>
+    </sc-if>
+    <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-align: center; color: #8B9AA8">
+      <div style="display: flex; flex-direction: column; gap: 4px"><span>MO</span><span style="color: {{accent}}">●</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span>DI</span><span>·</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span>MI</span><span style="color: {{accent}}">○</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span>DO</span><span style="color: {{accent}}">●</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span>FR</span><span>·</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span>SA</span><span>·</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px; color: #E6EDF3; border: 1px solid #3A4B5A; border-radius: 4px; padding: 2px 0"><span>SO</span><span>▸</span></div>
+    </div>
+  </section>
+
+  <sc-if value="{{showHint}}" hint-placeholder-val="{{ true }}">
+    <section style="background: {{hintBg}}; border: 1px solid #2A3A48; border-radius: 10px; padding: 12px 14px; display: flex; gap: 12px; align-items: center">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M6 18l2-2M16 8l2-2"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      <div style="display: flex; flex-direction: column; gap: 2px; flex: 1">
+        <b style="font-size: 14px">Re-Test in Woche 6</b>
+        <span style="font-size: 13px; color: #8B9AA8">Danach startet automatisch Block 3.</span>
+      </div>
+      <button type="button" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 6px; background: transparent; color: #E6EDF3; font: inherit; font-size: 13px; font-weight: 600; min-height: 44px; padding: 0 12px; cursor: pointer">Details</button>
+    </section>
+  </sc-if>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+    <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Gewicht · Ø 7 T</h2>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 500">[91,4]<small style="font-size: 14px; color: #8B9AA8"> kg</small></span>
+      <sc-if value="{{showTrend}}" hint-placeholder-val="{{ true }}">
+        <svg viewBox="0 0 140 40" width="100%" height="40" fill="none" role="img" aria-label="Trendlinie Gewicht, leicht fallend">
+          <defs><linearGradient id="fillB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{accent}}" stop-opacity="{{areaOpacity}}"></stop><stop offset="1" stop-color="{{accent}}" stop-opacity="0"></stop></linearGradient></defs>
+          <polygon points="0,8 20,10 40,9 60,15 80,17 100,21 120,24 140,27 140,40 0,40" fill="url(#fillB)"></polygon>
+          <polyline points="0,8 20,10 40,9 60,15 80,17 100,21 120,24 140,27" stroke="{{accent}}" stroke-width="2"></polyline>
+          <circle cx="140" cy="27" r="3" fill="{{accent}}"></circle>
+        </svg>
+      </sc-if>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6FDBA0">[−0,4] kg/Woche</span>
+    </section>
+    <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Heute wiegen</h2>
+      <label for="kgB" style="font-size: 12px; color: #8B9AA8">kg, nüchtern</label>
+      <input id="kgB" inputmode="decimal" placeholder="00,0" style="min-height: 44px; border-radius: 6px; border: 1px solid #3A4B5A; background: #0A0F14; color: #E6EDF3; font-family: 'IBM Plex Mono', monospace; font-size: 18px; padding: 0 10px; box-sizing: border-box; width: 100%">
+      <button type="button" style="appearance: none; min-height: 44px; border-radius: 6px; border: 1px solid #3A4B5A; background: #1A242E; color: #E6EDF3; font: inherit; font-weight: 600; cursor: pointer">Speichern</button>
+    </section>
+  </div>
+
+  <button type="button" style="appearance: none; border: 0; border-radius: 10px; background: {{btnBg}}; box-shadow: {{btnShadow}}; color: #04161A; font: inherit; font-size: 18px; font-weight: 700; min-height: 64px; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; cursor: pointer">Training starten <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500">~20 MIN</span></button>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+    <button type="button" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 10px; background: {{cardBg}}; color: #E6EDF3; font: inherit; font-weight: 600; min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; cursor: pointer">Mini <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">5 MIN</span></button>
+    <button type="button" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 10px; background: {{cardBg}}; color: #E6EDF3; font: inherit; font-weight: 600; min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; cursor: pointer">Badminton <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">+1</span></button>
+  </div>
+  <p style="margin: 0; font-size: 13px; color: #8B9AA8">Standard 05:00 · Nachmittag zählt voll · <a href="#">Nachtragen</a></p>
+
+  <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+    <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Stufen · 1–5</h2>
+    <sc-if value="{{levelBars}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <sc-for list="{{levels}}" as="l" hint-placeholder-count="4">
+          <a href="#" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #E6EDF3">
+            <span style="display: flex; justify-content: space-between; font-size: 14px"><span><b>{{l.name}}</b> <span style="color: #8B9AA8">{{l.ex}}</span></span><span style="font-family: 'IBM Plex Mono', monospace">S{{l.lv}}</span></span>
+            <span style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px">
+              <sc-for list="{{l.bars}}" as="b" hint-placeholder-count="5"><i style="height: 6px; border-radius: 2px; background: {{b.bg}}"></i></sc-for>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{levelRings}}" hint-placeholder-val="{{ false }}">
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <sc-for list="{{levels}}" as="l" hint-placeholder-count="4">
+          <a href="#" style="display: flex; gap: 10px; align-items: center; text-decoration: none; color: #E6EDF3; background: #0E151B; border: 1px solid #1F2B36; border-radius: 8px; padding: 10px">
+            <span style="position: relative; width: 44px; height: 44px; flex: none">
+              <svg viewBox="0 0 40 40" width="44" height="44" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="16" stroke="#1F2B36" stroke-width="4"></circle><circle cx="20" cy="20" r="16" stroke="{{accent}}" stroke-width="4" stroke-linecap="round" stroke-dasharray="{{l.dash}}" transform="rotate(-90 20 20)"></circle></svg>
+              <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600">{{l.lv}}</span>
+            </span>
+            <span style="display: flex; flex-direction: column; min-width: 0"><b style="font-size: 13px">{{l.name}}</b><small style="font-size: 12px; color: #8B9AA8; line-height: 1.25">{{l.ex}}</small></span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+  </section>
+
+  <sc-if value="{{showTogether}}" hint-placeholder-val="{{ true }}">
+    <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 14px">
+      <svg viewBox="0 0 40 24" width="40" height="24" fill="none" stroke="{{accent}}" stroke-width="2" aria-hidden="true"><circle cx="14" cy="12" r="9"></circle><circle cx="26" cy="12" r="9"></circle></svg>
+      <span style="flex: 1; font-size: 14px">Gemeinsam trainiert</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; color: {{accent}}">[4]×</span>
+    </section>
+  </sc-if>
+
+  <nav style="margin: auto -16px 0; background: rgba(13,20,26,0.92); border-top: 1px solid #1F2B36; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 8px 8px 24px">
+    <a href="#" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 600; color: {{accent}}; text-shadow: {{textGlow}}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg>Heute</a>
+    <a href="#" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; color: #8B9AA8"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6"></path></svg>Verlauf</a>
+    <a href="#" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; color: #8B9AA8"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><path d="M12 8v6m0 0-4 6m4-6 4 6M7 11h10"></path></svg>Übungen</a>
+    <a href="#" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; color: #8B9AA8"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"></path></svg>Mehr</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#3FD5E8&quot;,&quot;options&quot;:[&quot;#3FD5E8&quot;,&quot;#C6F432&quot;,&quot;#FFB547&quot;,&quot;#A18CFF&quot;],&quot;section&quot;:&quot;Farbe&quot;},&quot;verlauf&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:45,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;section&quot;:&quot;Farbe&quot;},&quot;glow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Farbe&quot;},&quot;raster&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;section&quot;:&quot;Farbe&quot;},&quot;wochenziel&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Bogen&quot;,&quot;options&quot;:[&quot;Segmente&quot;,&quot;Bogen&quot;],&quot;section&quot;:&quot;Bausteine&quot;},&quot;stufen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Balken&quot;,&quot;options&quot;:[&quot;Balken&quot;,&quot;Ringe&quot;],&quot;section&quot;:&quot;Bausteine&quot;},&quot;blockLeiste&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Bausteine&quot;},&quot;hinweis&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;section&quot;:&quot;Bausteine&quot;},&quot;trend&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Bausteine&quot;},&quot;gemeinsam&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;section&quot;:&quot;Bausteine&quot;},&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:1420}}">
+class Component extends DCLogic {
+  rgb(h) { const n = parseInt(h.replace('#', ''), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  rgba(h, a) { const c = this.rgb(h); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+  mix(h, t, f) { const a = this.rgb(h), b = this.rgb(t); const c = a.map((x, i) => Math.round(x + (b[i] - x) * f)); return '#' + c.map(x => x.toString(16).padStart(2, '0')).join(''); }
+  renderVals() {
+    const p = this.props;
+    const a = p.accent ?? '#3FD5E8';
+    const v = (p.verlauf ?? 45) / 100;
+    const glow = p.glow ?? true;
+    const raster = p.raster ?? false;
+    const grid = raster ? 'linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 24px 24px, linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 24px 24px, ' : '';
+    const rootBg = grid +
+      'radial-gradient(120% 38% at 85% 0%, ' + this.rgba(a, 0.24 * v) + ', transparent 70%), ' +
+      'radial-gradient(90% 30% at 0% 62%, ' + this.rgba('#7B6CF6', 0.14 * v) + ', transparent 70%), #0A0F14';
+    const cardBg = 'linear-gradient(160deg, ' + this.rgba(a, 0.09 * v) + ' 0%, #121A22 42%, #0F161C 100%)';
+    const accentDeep = this.mix(a, '#0A0F14', 0.35);
+    const accentLight = this.mix(a, '#FFFFFF', 0.25);
+    const btnBg = 'linear-gradient(120deg, ' + a + ' 0%, ' + this.mix(a, '#FFFFFF', 0.4 * v) + ' 100%)';
+    const segBg = 'linear-gradient(90deg, ' + this.mix(a, '#0A0F14', 0.4 * v) + ', ' + a + ')';
+    const weekNow = 3;
+    const weeks = [1, 2, 3, 4, 5, 6].map(n => ({
+      label: n === 6 ? 'TEST' : 'W' + n,
+      bg: n < weekNow ? a : n === weekNow ? 'linear-gradient(90deg, ' + a + ' 0%, ' + a + ' 40%, #1F2B36 40%)' : n === 6 ? 'repeating-linear-gradient(135deg, #2A3A48 0 4px, #1F2B36 4px 8px)' : '#1F2B36',
+      shadow: n === weekNow && glow ? '0 0 10px ' + this.rgba(a, 0.6) : 'none',
+      fg: n === weekNow ? '#E6EDF3' : '#8B9AA8'
+    }));
+    const C = 2 * Math.PI * 16;
+    const lv = [['Drücken', 'Liegestütz an der Sofakante', 3], ['Beine', 'Kniebeuge frei', 2], ['Ziehen', 'Tisch-Rudern, Knie gebeugt', 1], ['Rumpf', 'Unterarmstütz', 2]];
+    const levels = lv.map(([name, ex, l]) => ({
+      name, ex, lv: l,
+      dash: (C * l / 5).toFixed(1) + ' ' + C.toFixed(1),
+      bars: [1, 2, 3, 4, 5].map(i => ({ bg: i <= l ? this.mix(a, '#0A0F14', 0.45 * v * (1 - i / 5)) : '#1F2B36' }))
+    }));
+    return {
+      accent: a, accentDeep, accentLight, rootBg, cardBg, btnBg, segBg,
+      hintBg: 'linear-gradient(100deg, ' + this.rgba(a, 0.14 * v + 0.04) + ' 0%, #121A22 70%)',
+      btnShadow: glow ? '0 10px 30px ' + this.rgba(a, 0.35) : 'none',
+      segShadow: glow ? '0 0 10px ' + this.rgba(a, 0.45) : 'none',
+      textGlow: glow ? '0 0 18px ' + this.rgba(a, 0.55) : 'none',
+      areaOpacity: (0.15 + 0.35 * v).toFixed(2),
+      goalSegments: (p.wochenziel ?? 'Segmente') === 'Segmente',
+      goalArc: (p.wochenziel ?? 'Segmente') === 'Bogen',
+      levelBars: (p.stufen ?? 'Balken') === 'Balken',
+      levelRings: (p.stufen ?? 'Balken') === 'Ringe',
+      showBlock: p.blockLeiste ?? true,
+      showHint: p.hinweis ?? true,
+      showTrend: p.trend ?? true,
+      showTogether: p.gemeinsam ?? false,
+      weeks, levels
+    };
+  }
+}
+</script>
+</body>
+</html>

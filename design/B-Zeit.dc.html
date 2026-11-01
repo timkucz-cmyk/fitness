@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>B – Training Zeitübung</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3FD5E8}a:hover{color:#8BE7F2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: {{rootBg}}; color: #E6EDF3; font-family: 'IBM Plex Sans', system-ui, sans-serif; display: flex; flex-direction: column; padding: 20px 16px 28px; gap: 16px">
+  <div style="display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center">
+    <button type="button" aria-label="Einheit abbrechen" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 10px; background: #121A22; width: 44px; height: 44px; font: inherit; font-size: 20px; color: #E6EDF3; cursor: pointer">×</button>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8; letter-spacing: 0.06em">AUFWÄRMEN · 4/6</small>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="6"><i style="height: 4px; border-radius: 2px; background: {{s.bg}}"></i></sc-for>
+      </div>
+    </div>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px">02:18</span>
+  </div>
+
+  <div style="height: 200px; background: {{figBg}}; border: 1px solid #1F2B36; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+    <svg viewBox="0 0 220 130" width="270" height="160" fill="none" stroke="#E6EDF3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Strichfigur: kniender Ausfallschritt mit gehobenen Armen">
+      <line x1="10" y1="122" x2="210" y2="122" stroke="#3A4B5A" stroke-width="2"></line>
+      <circle cx="104" cy="22" r="9"></circle>
+      <line x1="104" y1="32" x2="100" y2="78"></line>
+      <line x1="102" y1="40" x2="92" y2="6"></line>
+      <line x1="102" y1="40" x2="116" y2="6"></line>
+      <line x1="100" y1="78" x2="140" y2="82"></line>
+      <line x1="140" y1="82" x2="142" y2="122"></line>
+      <line x1="100" y1="78" x2="78" y2="120"></line>
+      <line x1="78" y1="120" x2="44" y2="122"></line>
+    </svg>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <h1 style="margin: 0; font-size: 24px; line-height: 1.15; font-weight: 600">Kniender Ausfallschritt mit Armheben</h1>
+    <p style="margin: 0; display: inline-flex; align-self: flex-start; gap: 8px; align-items: center; font-size: 13px; color: {{accent}}; border: 1px solid {{noteBorder}}; background: {{noteBg}}; border-radius: 999px; padding: 4px 12px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg>Nach 30 s Seite wechseln</p>
+    <ul style="margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; font-size: 14px; color: #B7C3CE">
+      <li>— Hinteres Knie am Boden, Becken nach vorn schieben</li>
+      <li>— Arme über den Kopf, Rumpf aufrecht</li>
+    </ul>
+  </div>
+
+  <section aria-label="Noch 38 Sekunden" style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+    <span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 88px; line-height: 1; font-weight: 500; color: {{accent}}; text-shadow: {{textGlow}}">0:38</span>
+    <div style="position: relative; height: 10px; border-radius: 5px; background: #1F2B36">
+      <div style="width: 37%; height: 10px; border-radius: 5px; background: {{barBg}}; box-shadow: {{barShadow}}"></div>
+      <div style="position: absolute; left: 50%; top: -6px; width: 2px; height: 22px; background: #E6EDF3"></div>
+    </div>
+    <div style="position: relative; height: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8"><span style="position: absolute; left: 0">0:00</span><span style="position: absolute; left: 50%; transform: translateX(-50%)">SEITE</span><span style="position: absolute; right: 0">1:00</span></div>
+  </section>
+
+  <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px">
+    <button type="button" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 10px; background: transparent; color: #E6EDF3; font: inherit; font-weight: 600; min-height: 60px; cursor: pointer">Pause</button>
+    <button type="button" style="appearance: none; border: 0; border-radius: 10px; background: {{btnBg}}; box-shadow: {{btnShadow}}; color: #04161A; font: inherit; font-size: 18px; font-weight: 700; min-height: 60px; cursor: pointer">Weiter</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#3FD5E8","options":["#3FD5E8","#C6F432","#FFB547","#A18CFF"],"section":"Farbe"},"verlauf":{"editor":"range","default":45,"min":0,"max":100,"step":5,"unit":"%","section":"Farbe"},"glow":{"editor":"boolean","default":true,"section":"Farbe"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  rgb(h) { const n = parseInt(h.replace('#', ''), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  rgba(h, a) { const c = this.rgb(h); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+  mix(h, t, f) { const a = this.rgb(h), b = this.rgb(t); const c = a.map((x, i) => Math.round(x + (b[i] - x) * f)); return '#' + c.map(x => x.toString(16).padStart(2, '0')).join(''); }
+  renderVals() {
+    const p = this.props, a = p.accent ?? '#3FD5E8', v = (p.verlauf ?? 45) / 100, glow = p.glow ?? true;
+    return {
+      accent: a,
+      steps: Array.from({ length: 6 }, (_, i) => ({ bg: i < 3 ? a : i === 3 ? '#E6EDF3' : '#1F2B36' })),
+      rootBg: 'radial-gradient(110% 40% at 50% 100%, ' + this.rgba(a, 0.22 * v) + ', transparent 70%), radial-gradient(80% 30% at 100% 0%, ' + this.rgba('#7B6CF6', 0.14 * v) + ', transparent 70%), #0A0F14',
+      figBg: 'radial-gradient(70% 90% at 50% 100%, ' + this.rgba(a, 0.18 * v + 0.03) + ', #121A22 75%)',
+      noteBg: this.rgba(a, 0.08 + 0.06 * v), noteBorder: this.rgba(a, 0.4),
+      barBg: 'linear-gradient(90deg, ' + this.mix(a, '#0A0F14', 0.5 * v) + ', ' + a + ')',
+      barShadow: glow ? '0 0 12px ' + this.rgba(a, 0.5) : 'none',
+      btnBg: 'linear-gradient(120deg, ' + a + ' 0%, ' + this.mix(a, '#FFFFFF', 0.4 * v) + ' 100%)',
+      btnShadow: glow ? '0 10px 30px ' + this.rgba(a, 0.35) : 'none',
+      textGlow: glow ? '0 0 22px ' + this.rgba(a, 0.55) : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>

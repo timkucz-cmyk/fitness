@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>B – Onboarding</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3FD5E8}a:hover{color:#8BE7F2}
+</style>
+</helmet>
+<div style="width: 390px; height: 1180px; box-sizing: border-box; background: {{rootBg}}; color: #E6EDF3; font-family: 'IBM Plex Sans', system-ui, sans-serif; display: flex; flex-direction: column; gap: 16px; padding: 48px 16px 28px">
+  <section style="display: flex; flex-direction: column; gap: 14px; padding: 0 4px">
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{accent}}; letter-spacing: 0.1em">FITNESS · START</span>
+    <h1 style="margin: 0; font-size: 38px; line-height: 1.08; font-weight: 600; letter-spacing: -0.01em">Kein Zieldatum.<br><span style="color: {{accent}}; text-shadow: {{textGlow}}">Nur nächste Woche.</span></h1>
+    <p style="margin: 0; font-size: 15px; color: #B7C3CE; line-height: 1.5">Diese App zählt keine Tage in Folge. Sie zählt Wochen mit drei Einheiten, zeigt deine Stufen und den Trend.</p>
+  </section>
+
+  <form style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 14px; margin: 0">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <label for="oGoal" style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #8B9AA8">ZIELGEWICHT (KG)<input id="oGoal" value="80" inputmode="decimal" style="min-height: 48px; border-radius: 6px; border: 1px solid #3A4B5A; background: #0A0F14; color: #E6EDF3; font-family: 'IBM Plex Mono', monospace; font-size: 18px; padding: 0 12px; box-sizing: border-box; width: 100%"></label>
+      <label for="oNow" style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #8B9AA8">HEUTE (OPTIONAL)<input id="oNow" placeholder="z. B. 93,0" inputmode="decimal" style="min-height: 48px; border-radius: 6px; border: 1px solid #3A4B5A; background: #0A0F14; color: #E6EDF3; font-family: 'IBM Plex Mono', monospace; font-size: 18px; padding: 0 12px; box-sizing: border-box; width: 100%"></label>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: end">
+      <label for="oTime" style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #8B9AA8">STANDARDZEIT<input id="oTime" type="time" value="05:00" style="min-height: 48px; border-radius: 6px; border: 1px solid #3A4B5A; background: #0A0F14; color: #E6EDF3; font-family: 'IBM Plex Mono', monospace; font-size: 18px; padding: 0 12px; box-sizing: border-box; width: 100%; color-scheme: dark"></label>
+      <label style="min-height: 48px; display: flex; align-items: center; gap: 10px; font-size: 14px; border: 1px solid #3A4B5A; border-radius: 6px; padding: 0 12px; cursor: pointer"><input type="checkbox" style="width: 20px; height: 20px; accent-color: {{accent}}; margin: 0">Klimmzugstange</label>
+    </div>
+
+    <div style="border-top: 1px solid #1F2B36; padding-top: 14px; display: flex; flex-direction: column; gap: 4px">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Startstufen</h2>
+      <p style="margin: 0; font-size: 13px; color: #B7C3CE">Die Stufe, auf der du 8–12 saubere Wiederholungen schaffst. Im Zweifel die tiefere.</p>
+    </div>
+    <sc-for list="{{patterns}}" as="p" hint-placeholder-count="4">
+      <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+        <legend style="padding: 0; margin-bottom: 8px; width: 100%; display: flex; justify-content: space-between; font-size: 14px"><b>{{p.name}}</b><span style="color: #8B9AA8; font-size: 13px">{{p.ex}}</span></legend>
+        <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+          <sc-for list="{{p.opts}}" as="o" hint-placeholder-count="5">
+            <button type="button" aria-pressed="{{o.on}}" style="appearance: none; min-height: 44px; border-radius: 6px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; box-shadow: {{o.shadow}}; cursor: pointer">{{o.lv}}</button>
+          </sc-for>
+        </div>
+      </fieldset>
+    </sc-for>
+  </form>
+
+  <button type="button" style="margin-top: auto; appearance: none; border: 0; border-radius: 10px; background: {{btnBg}}; box-shadow: {{btnShadow}}; color: #04161A; font: inherit; font-size: 18px; font-weight: 700; min-height: 64px; cursor: pointer">Los geht’s</button>
+  <p style="margin: 0; text-align: center; font-size: 12px; color: #8B9AA8">Alle Daten bleiben auf diesem Gerät.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#3FD5E8","options":["#3FD5E8","#C6F432","#FFB547","#A18CFF"],"section":"Farbe"},"verlauf":{"editor":"range","default":45,"min":0,"max":100,"step":5,"unit":"%","section":"Farbe"},"glow":{"editor":"boolean","default":true,"section":"Farbe"},"$preview":{"width":390,"height":1180}}'>
+class Component extends DCLogic {
+  rgb(h) { const n = parseInt(h.replace('#', ''), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  rgba(h, a) { const c = this.rgb(h); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+  mix(h, t, f) { const a = this.rgb(h), b = this.rgb(t); const c = a.map((x, i) => Math.round(x + (b[i] - x) * f)); return '#' + c.map(x => x.toString(16).padStart(2, '0')).join(''); }
+  renderVals() {
+    const p = this.props, a = p.accent ?? '#3FD5E8', v = (p.verlauf ?? 45) / 100, glow = p.glow ?? true;
+    const P = [['Drücken', 'Liegestütz am Tisch', 2], ['Beine', 'Kniebeuge frei', 2], ['Ziehen', 'Tisch-Rudern, Knie stark gebeugt', 1], ['Rumpf', 'Unterarmstütz', 2]];
+    const patterns = P.map(([name, ex, sel]) => ({
+      name, ex,
+      opts: [1, 2, 3, 4, 5].map(lv => ({
+        lv, on: lv === sel ? 'true' : 'false',
+        bg: lv === sel ? a : '#0E151B',
+        fg: lv === sel ? '#04161A' : '#B7C3CE',
+        border: lv === sel ? a : '#3A4B5A',
+        shadow: lv === sel && glow ? '0 0 12px ' + this.rgba(a, 0.45) : 'none'
+      }))
+    }));
+    return {
+      accent: a, patterns,
+      rootBg: 'radial-gradient(130% 40% at 80% 0%, ' + this.rgba(a, 0.3 * v) + ', transparent 70%), radial-gradient(90% 30% at 0% 90%, ' + this.rgba('#7B6CF6', 0.16 * v) + ', transparent 70%), #0A0F14',
+      cardBg: 'linear-gradient(160deg, ' + this.rgba(a, 0.09 * v) + ' 0%, #121A22 42%, #0F161C 100%)',
+      btnBg: 'linear-gradient(120deg, ' + a + ' 0%, ' + this.mix(a, '#FFFFFF', 0.4 * v) + ' 100%)',
+      btnShadow: glow ? '0 10px 30px ' + this.rgba(a, 0.35) : 'none',
+      textGlow: glow ? '0 0 24px ' + this.rgba(a, 0.45) : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>B Hell – Satz</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#087786}a:hover{color:#055A66}
+</style>
+</helmet>
+<div style="width: 390px; height: 940px; box-sizing: border-box; background: {{rootBg}}; color: #0F1720; font-family: 'IBM Plex Sans', system-ui, sans-serif; display: flex; flex-direction: column; padding: 20px 16px 28px; gap: 16px">
+  <div style="display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center">
+    <button type="button" aria-label="Einheit abbrechen" style="appearance: none; border: 1px solid #C3CDD7; border-radius: 10px; background: #FFFFFF; width: 44px; height: 44px; font: inherit; font-size: 20px; color: #0F1720; cursor: pointer">×</button>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #566473; letter-spacing: 0.06em">RUNDE 1/2 · SATZ 1/4</small>
+      <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="12"><i style="height: 4px; border-radius: 2px; background: {{s.bg}}"></i></sc-for>
+      </div>
+    </div>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px">07:42</span>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 120px; gap: 12px; align-items: stretch">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <small style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #566473">DRÜCKEN · S3</small>
+      <h1 style="margin: 0; font-size: 24px; line-height: 1.15; font-weight: 600">Liegestütz an der Sofakante</h1>
+    </div>
+    <div style="background: {{cardBg}}; border: 1px solid #DCE3EA; border-radius: 10px; display: flex; align-items: center; justify-content: center">
+      <svg viewBox="0 0 220 130" width="110" height="65" fill="none" stroke="#0F1720" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Strichfigur: Liegestütz an der Sofakante">
+        <rect x="140" y="78" width="70" height="42" stroke="#C3CDD7" stroke-width="4" fill="#E4EAF0"></rect>
+        <circle cx="160" cy="44" r="9"></circle>
+        <line x1="150" y1="52" x2="56" y2="104"></line>
+        <line x1="146" y1="56" x2="138" y2="68"></line>
+        <line x1="138" y1="68" x2="150" y2="78"></line>
+        <line x1="56" y1="104" x2="30" y2="118"></line>
+      </svg>
+    </div>
+  </div>
+
+  <section style="background: {{cardBg}}; border: 1px solid #DCE3EA; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #566473"><span>ZIELBEREICH 8–12</span><span>ZULETZT 10</span></div>
+    <div style="position: relative; height: 28px">
+      <div style="position: absolute; left: 0; right: 0; top: 12px; height: 4px; border-radius: 2px; background: #E4EAF0"></div>
+      <div style="position: absolute; left: 40%; width: 20%; top: 8px; height: 12px; border-radius: 3px; background: {{bandBg}}"></div>
+      <div style="position: absolute; left: 50%; top: 0; width: 3px; height: 28px; border-radius: 2px; background: #0F1720"></div>
+    </div>
+    <div style="position: relative; height: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #566473"><span style="position: absolute; left: 0">0</span><span style="position: absolute; left: 40%; transform: translateX(-50%)">8</span><span style="position: absolute; left: 60%; transform: translateX(-50%)">12</span><span style="position: absolute; right: 0">20</span></div>
+  </section>
+
+  <section aria-label="Tempo pro Wiederholung" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 11px">
+    <div style="display: flex; flex-direction: column; gap: 4px"><span style="height: 6px; border-radius: 3px; background: {{tempo1}}"></span><span style="color: #2E3B48">2 S RUNTER</span></div>
+    <div style="display: flex; flex-direction: column; gap: 4px"><span style="height: 6px; border-radius: 3px; background: #C3CDD7"></span><span style="color: #566473">1 S HALTEN</span></div>
+    <div style="display: flex; flex-direction: column; gap: 4px"><span style="height: 6px; border-radius: 3px; background: {{tempo3}}"></span><span style="color: #566473">1 S HOCH</span></div>
+  </section>
+
+  <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #2E3B48">
+    <li>— Hände auf Sofa- oder Bettkante</li>
+    <li>— Körper bleibt eine Linie</li>
+    <li>— Brust bis knapp an die Kante</li>
+  </ul>
+
+  <section aria-label="Letzte Einheiten" style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap">
+    <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #566473; margin-right: 4px">VERLAUF</small>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; border: 1px solid #C3CDD7; border-radius: 999px; padding: 4px 10px; color: #566473">27.10. · 9/8</span>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; border: 1px solid #C3CDD7; border-radius: 999px; padding: 4px 10px; color: #2E3B48">29.10. · 10/9</span>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; border: 1px solid {{ink}}; border-radius: 999px; padding: 4px 10px; color: {{ink}}">heute · …</span>
+  </section>
+
+  <div style="margin-top: auto; display: grid; grid-template-columns: 80px 1fr 80px; gap: 10px; align-items: center">
+    <button type="button" aria-label="Eine Wiederholung weniger" style="appearance: none; border: 1px solid #C3CDD7; border-radius: 12px; background: #FFFFFF; height: 80px; font: inherit; font-size: 32px; color: #0F1720; cursor: pointer">−</button>
+    <div style="display: flex; flex-direction: column; align-items: center"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 96px; line-height: 1; font-weight: 500; color: {{ink}}">10</span><small style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #566473">WDH.</small></div>
+    <button type="button" aria-label="Eine Wiederholung mehr" style="appearance: none; border: 1px solid #C3CDD7; border-radius: 12px; background: #FFFFFF; height: 80px; font: inherit; font-size: 32px; color: #0F1720; cursor: pointer">+</button>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px">
+    <button type="button" style="appearance: none; border: 1px solid #C3CDD7; border-radius: 10px; background: transparent; color: #2E3B48; font: inherit; font-weight: 600; min-height: 60px; cursor: pointer">Auslassen</button>
+    <button type="button" style="appearance: none; border: 0; border-radius: 10px; background: {{btnBg}}; box-shadow: {{btnShadow}}; color: #04161A; font: inherit; font-size: 18px; font-weight: 700; min-height: 60px; cursor: pointer">Satz fertig</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#3FD5E8","options":["#3FD5E8","#C6F432","#FFB547","#A18CFF"],"section":"Farbe"},"ink":{"editor":"color","default":"#087786","section":"Farbe"},"verlauf":{"editor":"range","default":45,"min":0,"max":100,"step":5,"unit":"%","section":"Farbe"},"glow":{"editor":"boolean","default":true,"section":"Farbe"},"$preview":{"width":390,"height":940}}'>
+class Component extends DCLogic {
+  rgb(h) { const n = parseInt(h.replace('#', ''), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  rgba(h, a) { const c = this.rgb(h); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+  mix(h, t, f) { const a = this.rgb(h), b = this.rgb(t); const c = a.map((x, i) => Math.round(x + (b[i] - x) * f)); return '#' + c.map(x => x.toString(16).padStart(2, '0')).join(''); }
+  renderVals() {
+    const p = this.props, a = p.accent ?? '#3FD5E8', ink = p.ink ?? '#087786', v = (p.verlauf ?? 45) / 100, glow = p.glow ?? true;
+    return {
+      accent: a, ink,
+      steps: Array.from({ length: 12 }, (_, i) => ({ bg: i < 4 ? ink : i === 4 ? '#0F1720' : '#DCE3EA' })),
+      rootBg: 'radial-gradient(110% 40% at 50% 100%, ' + this.rgba(a, 0.26 * v) + ', transparent 70%), radial-gradient(80% 30% at 100% 0%, ' + this.rgba('#7B6CF6', 0.1 * v) + ', transparent 70%), #F2F5F8',
+      cardBg: 'linear-gradient(160deg, ' + this.rgba(a, 0.1 * v) + ' 0%, #FFFFFF 40%)',
+      bandBg: 'linear-gradient(90deg, ' + this.rgba(a, 0.35) + ', ' + this.rgba(a, 0.35 + 0.45 * v) + ')',
+      tempo1: 'linear-gradient(90deg, ' + this.mix(ink, a, 0.2) + ', ' + this.mix(ink, a, 0.2 + 0.6 * v) + ')',
+      tempo3: this.mix(ink, '#FFFFFF', 0.5),
+      btnBg: 'linear-gradient(120deg, ' + a + ' 0%, ' + this.mix(a, '#FFFFFF', 0.4 * v) + ' 100%)',
+      btnShadow: glow ? '0 8px 22px ' + this.rgba(a, 0.4) : '0 1px 2px rgba(15,23,32,0.1)'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>B Instrument – Satz</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3FD5E8}a:hover{color:#8BE7F2}
+</style>
+</helmet>
+<div style="width: 390px; height: 940px; box-sizing: border-box; background: {{rootBg}}; color: #E6EDF3; font-family: 'IBM Plex Sans', system-ui, sans-serif; display: flex; flex-direction: column; padding: 20px 16px 28px; gap: 16px">
+  <div style="display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center">
+    <button type="button" aria-label="Einheit abbrechen" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 10px; background: #121A22; width: 44px; height: 44px; font: inherit; font-size: 20px; color: #E6EDF3; cursor: pointer">×</button>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8; letter-spacing: 0.06em">RUNDE 1/2 · SATZ 1/4</small>
+      <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="12"><i style="height: 4px; border-radius: 2px; background: {{s.bg}}; box-shadow: {{s.shadow}}"></i></sc-for>
+      </div>
+    </div>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px">07:42</span>
+  </div>
+
+  <sc-if value="{{figSmall}}" hint-placeholder-val="{{ true }}">
+    <div style="display: grid; grid-template-columns: 1fr 120px; gap: 12px; align-items: stretch">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <small style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">DRÜCKEN · S3</small>
+        <h1 style="margin: 0; font-size: 24px; line-height: 1.15; font-weight: 600">Liegestütz an der Sofakante</h1>
+      </div>
+      <div style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; display: flex; align-items: center; justify-content: center">
+        <svg viewBox="0 0 220 130" width="110" height="65" fill="none" stroke="#E6EDF3" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Strichfigur: Liegestütz an der Sofakante">
+          <rect x="140" y="78" width="70" height="42" stroke="#3A4B5A" stroke-width="4" fill="#1A242E"></rect>
+          <circle cx="160" cy="44" r="9"></circle>
+          <line x1="150" y1="52" x2="56" y2="104"></line>
+          <line x1="146" y1="56" x2="138" y2="68"></line>
+          <line x1="138" y1="68" x2="150" y2="78"></line>
+          <line x1="56" y1="104" x2="30" y2="118"></line>
+        </svg>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{figBig}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="height: 170px; background: {{figBg}}; border: 1px solid #1F2B36; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+        <svg viewBox="0 0 220 130" width="260" height="154" fill="none" stroke="#E6EDF3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Strichfigur: Liegestütz an der Sofakante">
+          <rect x="140" y="78" width="70" height="42" stroke="#3A4B5A" stroke-width="3" fill="#1A242E"></rect>
+          <line x1="10" y1="120" x2="210" y2="120" stroke="#3A4B5A" stroke-width="2"></line>
+          <circle cx="160" cy="44" r="9"></circle>
+          <line x1="150" y1="52" x2="56" y2="104"></line>
+          <line x1="146" y1="56" x2="138" y2="68"></line>
+          <line x1="138" y1="68" x2="150" y2="78"></line>
+          <line x1="56" y1="104" x2="30" y2="118"></line>
+        </svg>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <small style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">DRÜCKEN · S3</small>
+        <h1 style="margin: 0; font-size: 24px; line-height: 1.15; font-weight: 600">Liegestütz an der Sofakante</h1>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{showScale}}" hint-placeholder-val="{{ true }}">
+    <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8"><span>ZIELBEREICH 8–12</span><span>ZULETZT 10</span></div>
+      <div style="position: relative; height: 28px">
+        <div style="position: absolute; left: 0; right: 0; top: 12px; height: 4px; border-radius: 2px; background: #1F2B36"></div>
+        <div style="position: absolute; left: 40%; width: 20%; top: 8px; height: 12px; border-radius: 3px; background: {{bandBg}}"></div>
+        <div style="position: absolute; left: 50%; top: 0; width: 3px; height: 28px; border-radius: 2px; background: #E6EDF3; box-shadow: {{markShadow}}"></div>
+      </div>
+      <div style="position: relative; height: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8"><span style="position: absolute; left: 0">0</span><span style="position: absolute; left: 40%; transform: translateX(-50%)">8</span><span style="position: absolute; left: 60%; transform: translateX(-50%)">12</span><span style="position: absolute; right: 0">20</span></div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{showTempo}}" hint-placeholder-val="{{ true }}">
+    <section aria-label="Tempo pro Wiederholung" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 11px">
+      <div style="display: flex; flex-direction: column; gap: 4px"><span style="height: 6px; border-radius: 3px; background: {{tempo1}}"></span><span style="color: #B7C3CE">2 S RUNTER</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span style="height: 6px; border-radius: 3px; background: #3A4B5A"></span><span style="color: #8B9AA8">1 S HALTEN</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span style="height: 6px; border-radius: 3px; background: {{tempo3}}"></span><span style="color: #8B9AA8">1 S HOCH</span></div>
+    </section>
+  </sc-if>
+
+  <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #B7C3CE">
+    <li>— Hände auf Sofa- oder Bettkante</li>
+    <li>— Körper bleibt eine Linie</li>
+    <li>— Brust bis knapp an die Kante</li>
+  </ul>
+
+  <sc-if value="{{showHistory}}" hint-placeholder-val="{{ true }}">
+    <section aria-label="Letzte Einheiten" style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap">
+      <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8; margin-right: 4px">VERLAUF</small>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; border: 1px solid #2A3A48; border-radius: 999px; padding: 4px 10px; color: #8B9AA8">27.10. · 9/8</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; border: 1px solid #2A3A48; border-radius: 999px; padding: 4px 10px; color: #B7C3CE">29.10. · 10/9</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; border: 1px solid {{accent}}; border-radius: 999px; padding: 4px 10px; color: {{accent}}">heute · …</span>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{counterNum}}" hint-placeholder-val="{{ true }}">
+    <div style="margin-top: auto; display: grid; grid-template-columns: 80px 1fr 80px; gap: 10px; align-items: center">
+      <button type="button" aria-label="Eine Wiederholung weniger" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 12px; background: {{cardBg}}; height: 80px; font: inherit; font-size: 32px; color: #E6EDF3; cursor: pointer">−</button>
+      <div style="display: flex; flex-direction: column; align-items: center"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 96px; line-height: 1; font-weight: 500; color: {{accent}}; text-shadow: {{textGlow}}">10</span><small style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">WDH.</small></div>
+      <button type="button" aria-label="Eine Wiederholung mehr" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 12px; background: {{cardBg}}; height: 80px; font: inherit; font-size: 32px; color: #E6EDF3; cursor: pointer">+</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{counterRing}}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top: auto; display: grid; grid-template-columns: 64px 1fr 64px; gap: 8px; align-items: center">
+      <button type="button" aria-label="Eine Wiederholung weniger" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 50%; background: {{cardBg}}; width: 64px; height: 64px; font: inherit; font-size: 28px; color: #E6EDF3; cursor: pointer">−</button>
+      <div style="position: relative; height: 176px; display: flex; align-items: center; justify-content: center">
+        <svg viewBox="0 0 160 160" width="176" height="176" fill="none" aria-hidden="true" style="filter: {{ringFilter}}">
+          <defs><linearGradient id="ringS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{{accentLight}}"></stop><stop offset="1" stop-color="{{accentDeep}}"></stop></linearGradient></defs>
+          <circle cx="80" cy="80" r="68" stroke="#1F2B36" stroke-width="10"></circle>
+          <circle cx="80" cy="80" r="68" stroke="#2A3A48" stroke-width="10" stroke-dasharray="85.5 427.3" stroke-dashoffset="-170.9" transform="rotate(-90 80 80)"></circle>
+          <circle cx="80" cy="80" r="68" stroke="url(#ringS)" stroke-width="10" stroke-linecap="round" stroke-dasharray="213.6 427.3" transform="rotate(-90 80 80)"></circle>
+        </svg>
+        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 64px; line-height: 1; font-weight: 500; color: {{accent}}">10</span><small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8">VON 8–12</small></div>
+      </div>
+      <button type="button" aria-label="Eine Wiederholung mehr" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 50%; background: {{cardBg}}; width: 64px; height: 64px; font: inherit; font-size: 28px; color: #E6EDF3; cursor: pointer">+</button>
+    </div>
+  </sc-if>
+
+  <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px">
+    <button type="button" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 10px; background: transparent; color: #B7C3CE; font: inherit; font-weight: 600; min-height: 60px; cursor: pointer">Auslassen</button>
+    <button type="button" style="appearance: none; border: 0; border-radius: 10px; background: {{btnBg}}; box-shadow: {{btnShadow}}; color: #04161A; font: inherit; font-size: 18px; font-weight: 700; min-height: 60px; cursor: pointer">Satz fertig</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#3FD5E8&quot;,&quot;options&quot;:[&quot;#3FD5E8&quot;,&quot;#C6F432&quot;,&quot;#FFB547&quot;,&quot;#A18CFF&quot;],&quot;section&quot;:&quot;Farbe&quot;},&quot;verlauf&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:45,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;section&quot;:&quot;Farbe&quot;},&quot;glow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Farbe&quot;},&quot;raster&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;section&quot;:&quot;Farbe&quot;},&quot;zaehler&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Zahl&quot;,&quot;options&quot;:[&quot;Zahl&quot;,&quot;Ring&quot;],&quot;section&quot;:&quot;Bausteine&quot;},&quot;figur&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Klein&quot;,&quot;options&quot;:[&quot;Klein&quot;,&quot;Groß&quot;],&quot;section&quot;:&quot;Bausteine&quot;},&quot;zielskala&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Bausteine&quot;},&quot;tempo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Bausteine&quot;},&quot;letzteSaetze&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Bausteine&quot;},&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:940}}">
+class Component extends DCLogic {
+  rgb(h) { const n = parseInt(h.replace('#', ''), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  rgba(h, a) { const c = this.rgb(h); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+  mix(h, t, f) { const a = this.rgb(h), b = this.rgb(t); const c = a.map((x, i) => Math.round(x + (b[i] - x) * f)); return '#' + c.map(x => x.toString(16).padStart(2, '0')).join(''); }
+  renderVals() {
+    const p = this.props;
+    const a = p.accent ?? '#3FD5E8';
+    const v = (p.verlauf ?? 45) / 100;
+    const glow = p.glow ?? true;
+    const raster = p.raster ?? false;
+    const grid = raster ? 'linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 24px 24px, linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 24px 24px, ' : '';
+    const rootBg = grid +
+      'radial-gradient(110% 40% at 50% 100%, ' + this.rgba(a, 0.22 * v) + ', transparent 70%), ' +
+      'radial-gradient(80% 30% at 100% 0%, ' + this.rgba('#7B6CF6', 0.14 * v) + ', transparent 70%), #0A0F14';
+    const cardBg = 'linear-gradient(160deg, ' + this.rgba(a, 0.09 * v) + ' 0%, #121A22 42%, #0F161C 100%)';
+    const steps = Array.from({ length: 12 }, (_, i) => ({
+      bg: i < 4 ? a : i === 4 ? '#E6EDF3' : '#1F2B36',
+      shadow: i === 4 && glow ? '0 0 8px rgba(230,237,243,0.6)' : 'none'
+    }));
+    const counter = p.zaehler ?? 'Zahl';
+    const fig = p.figur ?? 'Klein';
+    return {
+      accent: a, rootBg, cardBg, steps,
+      accentDeep: this.mix(a, '#0A0F14', 0.35),
+      accentLight: this.mix(a, '#FFFFFF', 0.3),
+      figBg: 'radial-gradient(70% 90% at 50% 100%, ' + this.rgba(a, 0.18 * v + 0.03) + ', #121A22 75%)',
+      bandBg: 'linear-gradient(90deg, ' + this.rgba(a, 0.25) + ', ' + this.rgba(a, 0.25 + 0.4 * v) + ')',
+      markShadow: glow ? '0 0 10px rgba(230,237,243,0.7)' : 'none',
+      tempo1: 'linear-gradient(90deg, ' + this.mix(a, '#0A0F14', 0.5 * v) + ', ' + a + ')',
+      tempo3: this.mix(a, '#0A0F14', 0.45),
+      btnBg: 'linear-gradient(120deg, ' + a + ' 0%, ' + this.mix(a, '#FFFFFF', 0.4 * v) + ' 100%)',
+      btnShadow: glow ? '0 10px 30px ' + this.rgba(a, 0.35) : 'none',
+      textGlow: glow ? '0 0 22px ' + this.rgba(a, 0.55) : 'none',
+      ringFilter: glow ? 'drop-shadow(0 0 10px ' + this.rgba(a, 0.45) + ')' : 'none',
+      counterNum: counter === 'Zahl', counterRing: counter === 'Ring',
+      figSmall: fig === 'Klein', figBig: fig === 'Groß',
+      showScale: p.zielskala ?? true,
+      showTempo: p.tempo ?? true,
+      showHistory: p.letzteSaetze ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

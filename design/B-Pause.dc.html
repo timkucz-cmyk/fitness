@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>B – Training Pause</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3FD5E8}a:hover{color:#8BE7F2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: {{rootBg}}; color: #E6EDF3; font-family: 'IBM Plex Sans', system-ui, sans-serif; display: flex; flex-direction: column; padding: 20px 16px 28px; gap: 16px">
+  <div style="display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center">
+    <button type="button" aria-label="Einheit abbrechen" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 10px; background: #121A22; width: 44px; height: 44px; font: inherit; font-size: 20px; color: #E6EDF3; cursor: pointer">×</button>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8; letter-spacing: 0.06em">RUNDE 1/2 · PAUSE</small>
+      <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="12"><i style="height: 4px; border-radius: 2px; background: {{s.bg}}"></i></sc-for>
+      </div>
+    </div>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px">08:31</span>
+  </div>
+
+  <section aria-label="Pause, noch 52 Sekunden" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px">
+    <small style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #8B9AA8; letter-spacing: 0.2em">PAUSE</small>
+    <div style="position: relative; width: 240px; height: 240px">
+      <svg viewBox="0 0 200 200" width="240" height="240" fill="none" aria-hidden="true" style="filter: {{ringFilter}}">
+        <defs><linearGradient id="pR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{{accentLight}}"></stop><stop offset="1" stop-color="{{accentDeep}}"></stop></linearGradient></defs>
+        <circle cx="100" cy="100" r="88" stroke="#1F2B36" stroke-width="8"></circle>
+        <circle cx="100" cy="100" r="88" stroke="url(#pR)" stroke-width="8" stroke-linecap="round" stroke-dasharray="319.5 552.9" transform="rotate(-90 100 100)"></circle>
+      </svg>
+      <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 72px; line-height: 1; font-weight: 500; color: {{accent}}; text-shadow: {{textGlow}}">0:52</span>
+        <small style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">VON 1:30</small>
+      </div>
+    </div>
+    <p style="margin: 8px 0 0; font-size: 14px; color: #B7C3CE">Atmen. Wasser trinken.</p>
+  </section>
+
+  <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 14px; display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: center">
+    <div style="height: 64px; background: #0E151B; border: 1px solid #1F2B36; border-radius: 8px; display: flex; align-items: center; justify-content: center">
+      <svg viewBox="0 0 220 130" width="88" height="52" fill="none" stroke="#E6EDF3" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Strichfigur: Kniebeuge"><line x1="20" y1="122" x2="200" y2="122" stroke="#3A4B5A" stroke-width="3"></line><circle cx="120" cy="22" r="10"></circle><line x1="118" y1="34" x2="104" y2="76"></line><line x1="104" y1="76" x2="140" y2="88"></line><line x1="140" y1="88" x2="124" y2="122"></line><line x1="112" y1="48" x2="150" y2="54"></line></svg>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8">ALS NÄCHSTES · BEINE S2</small>
+      <b style="font-size: 17px; font-weight: 600">Kniebeuge frei</b>
+      <small style="font-size: 13px; color: #8B9AA8">Ziel 8–12 Wdh. · zuletzt 12</small>
+    </div>
+  </section>
+
+  <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px">
+    <button type="button" style="appearance: none; border: 1px solid #3A4B5A; border-radius: 10px; background: transparent; color: #E6EDF3; font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 500; min-height: 60px; cursor: pointer">+15 S</button>
+    <button type="button" style="appearance: none; border: 0; border-radius: 10px; background: {{btnBg}}; box-shadow: {{btnShadow}}; color: #04161A; font: inherit; font-size: 18px; font-weight: 700; min-height: 60px; cursor: pointer">Weiter</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#3FD5E8","options":["#3FD5E8","#C6F432","#FFB547","#A18CFF"],"section":"Farbe"},"verlauf":{"editor":"range","default":45,"min":0,"max":100,"step":5,"unit":"%","section":"Farbe"},"glow":{"editor":"boolean","default":true,"section":"Farbe"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  rgb(h) { const n = parseInt(h.replace('#', ''), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  rgba(h, a) { const c = this.rgb(h); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+  mix(h, t, f) { const a = this.rgb(h), b = this.rgb(t); const c = a.map((x, i) => Math.round(x + (b[i] - x) * f)); return '#' + c.map(x => x.toString(16).padStart(2, '0')).join(''); }
+  renderVals() {
+    const p = this.props, a = p.accent ?? '#3FD5E8', v = (p.verlauf ?? 45) / 100, glow = p.glow ?? true;
+    return {
+      accent: a,
+      steps: Array.from({ length: 12 }, (_, i) => ({ bg: i < 5 ? a : '#1F2B36' })),
+      accentDeep: this.mix(a, '#0A0F14', 0.35), accentLight: this.mix(a, '#FFFFFF', 0.3),
+      rootBg: 'radial-gradient(90% 45% at 50% 38%, ' + this.rgba(a, 0.2 * v) + ', transparent 70%), radial-gradient(80% 30% at 100% 0%, ' + this.rgba('#7B6CF6', 0.14 * v) + ', transparent 70%), #0A0F14',
+      cardBg: 'linear-gradient(160deg, ' + this.rgba(a, 0.09 * v) + ' 0%, #121A22 42%, #0F161C 100%)',
+      btnBg: 'linear-gradient(120deg, ' + a + ' 0%, ' + this.mix(a, '#FFFFFF', 0.4 * v) + ' 100%)',
+      btnShadow: glow ? '0 10px 30px ' + this.rgba(a, 0.35) : 'none',
+      textGlow: glow ? '0 0 22px ' + this.rgba(a, 0.55) : 'none',
+      ringFilter: glow ? 'drop-shadow(0 0 12px ' + this.rgba(a, 0.45) + ')' : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>

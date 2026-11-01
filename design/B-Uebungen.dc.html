@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>B – Übungen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3FD5E8}a:hover{color:#8BE7F2}
+</style>
+</helmet>
+<div style="width: 390px; height: 1560px; box-sizing: border-box; background: {{rootBg}}; color: #E6EDF3; font-family: 'IBM Plex Sans', system-ui, sans-serif; display: flex; flex-direction: column; gap: 12px; padding: 24px 16px 0">
+  <header style="display: flex; flex-direction: column; gap: 6px">
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600">Übungen</h1>
+    <p style="margin: 0; font-size: 13px; color: #8B9AA8; line-height: 1.45">Alle Arbeitssätze am oberen Ende des Zielbereichs → nächste Einheit eine Stufe höher. Unter dem Mindestwert → eine Stufe zurück.</p>
+  </header>
+
+  <nav aria-label="Abschnitte" style="display: flex; gap: 6px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 4px">
+    <a href="#" style="flex: none; min-height: 36px; display: flex; align-items: center; padding: 0 12px; border-radius: 999px; border: 1px solid #3A4B5A; font-size: 13px; color: #B7C3CE; text-decoration: none">Aufwärmen</a>
+    <a href="#" style="flex: none; min-height: 36px; display: flex; align-items: center; padding: 0 12px; border-radius: 999px; background: {{chipBg}}; border: 1px solid {{accent}}; font-size: 13px; font-weight: 600; color: #E6EDF3; text-decoration: none">Drücken · 3</a>
+    <a href="#" style="flex: none; min-height: 36px; display: flex; align-items: center; padding: 0 12px; border-radius: 999px; border: 1px solid #3A4B5A; font-size: 13px; color: #B7C3CE; text-decoration: none">Beine · 2</a>
+    <a href="#" style="flex: none; min-height: 36px; display: flex; align-items: center; padding: 0 12px; border-radius: 999px; border: 1px solid #3A4B5A; font-size: 13px; color: #B7C3CE; text-decoration: none">Ziehen · 1</a>
+    <a href="#" style="flex: none; min-height: 36px; display: flex; align-items: center; padding: 0 12px; border-radius: 999px; border: 1px solid #3A4B5A; font-size: 13px; color: #B7C3CE; text-decoration: none">Rumpf · 2</a>
+    <a href="#" style="flex: none; min-height: 36px; display: flex; align-items: center; padding: 0 12px; border-radius: 999px; border: 1px solid #3A4B5A; font-size: 13px; color: #B7C3CE; text-decoration: none">Dehnen</a>
+  </nav>
+
+  <details style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 0 16px">
+    <summary style="min-height: 52px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none"><span style="font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Aufwärmen</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">6 ÜBUNGEN · 4 MIN ▾</span></summary>
+  </details>
+
+  <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Drücken · Leiter</h2>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{accent}}">AKTUELL S3</span>
+    </div>
+    <sc-for list="{{ladder}}" as="s" hint-placeholder-count="5">
+      <div style="display: grid; grid-template-columns: 28px 1fr; gap: 12px">
+        <div style="display: flex; flex-direction: column; align-items: center">
+          <span style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; background: {{s.dotBg}}; color: {{s.dotFg}}; box-shadow: {{s.dotShadow}}">{{s.lv}}</span>
+          <span style="flex: 1; width: 2px; min-height: 12px; background: {{s.lineBg}}"></span>
+        </div>
+        <div style="padding: 3px 0 14px; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 15px; font-weight: {{s.weight}}; color: {{s.fg}}">{{s.name}}</span>
+          <small style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B9AA8">ZIEL 8–12 WDH.</small>
+          <sc-if value="{{s.current}}" hint-placeholder-val="{{ false }}">
+            <div style="display: grid; grid-template-columns: 112px 1fr; gap: 12px; margin-top: 4px; background: #0E151B; border: 1px solid #1F2B36; border-radius: 8px; padding: 10px">
+              <svg viewBox="0 0 220 130" width="112" height="66" fill="none" stroke="#E6EDF3" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Strichfigur: Liegestütz an der Sofakante"><rect x="140" y="78" width="70" height="42" stroke="#3A4B5A" stroke-width="4" fill="#1A242E"></rect><circle cx="160" cy="44" r="9"></circle><line x1="150" y1="52" x2="56" y2="104"></line><line x1="146" y1="56" x2="138" y2="68"></line><line x1="138" y1="68" x2="150" y2="78"></line><line x1="56" y1="104" x2="30" y2="118"></line></svg>
+              <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: #B7C3CE"><li>— Hände auf Sofa- oder Bettkante</li><li>— Körper bleibt eine Linie</li><li>— Brust bis knapp an die Kante</li></ul>
+            </div>
+          </sc-if>
+          <sc-if value="{{s.settable}}" hint-placeholder-val="{{ true }}">
+            <button type="button" style="appearance: none; align-self: flex-start; border: 0; background: none; padding: 0; min-height: 28px; font: inherit; font-size: 13px; color: {{accent}}; cursor: pointer; text-decoration: underline; text-underline-offset: 3px">Als aktuelle Stufe setzen</button>
+          </sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Beine · Leiter</h2>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{accent}}">AKTUELL S2</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px">
+      <sc-for list="{{legs}}" as="b" hint-placeholder-count="5"><span style="height: 6px; border-radius: 2px; background: {{b.bg}}"></span></sc-for>
+    </div>
+    <p style="margin: 0; font-size: 14px"><b>Kniebeuge frei</b> <span style="color: #8B9AA8">· als Nächstes: Ausfallschritt am Platz</span></p>
+  </section>
+
+  <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Ziehen · Leiter</h2>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{accent}}">AKTUELL S1</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px">
+      <sc-for list="{{pull}}" as="b" hint-placeholder-count="5"><span style="height: 6px; border-radius: 2px; background: {{b.bg}}"></span></sc-for>
+    </div>
+    <p style="margin: 0; font-size: 14px"><b>Tisch-Rudern, Knie stark gebeugt</b></p>
+    <p style="margin: 0; font-size: 12px; color: #8B9AA8; display: flex; gap: 6px; align-items: center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Stufe 4–5 brauchen eine Klimmzugstange.</p>
+  </section>
+
+  <section style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Rumpf · Leiter</h2>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{accent}}">AKTUELL S2</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px">
+      <sc-for list="{{legs}}" as="b" hint-placeholder-count="5"><span style="height: 6px; border-radius: 2px; background: {{b.bg}}"></span></sc-for>
+    </div>
+    <p style="margin: 0; font-size: 14px"><b>Unterarmstütz</b> <span style="color: #8B9AA8">· Ziel 20–45 s</span></p>
+  </section>
+
+  <details style="background: {{cardBg}}; border: 1px solid #1F2B36; border-radius: 10px; padding: 0 16px">
+    <summary style="min-height: 52px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none"><span style="font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: #8B9AA8">Dehnen</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8B9AA8">4 ÜBUNGEN · 3 MIN ▾</span></summary>
+  </details>
+
+  <nav style="margin: auto -16px 0; background: rgba(13,20,26,0.92); border-top: 1px solid #1F2B36; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 8px 8px 24px">
+    <a href="B-Heute.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; color: #8B9AA8"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg>Heute</a>
+    <a href="B-Verlauf.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; color: #8B9AA8"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6"></path></svg>Verlauf</a>
+    <a href="#" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; font-weight: 600; color: {{accent}}; text-shadow: {{textGlow}}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><path d="M12 8v6m0 0-4 6m4-6 4 6M7 11h10"></path></svg>Übungen</a>
+    <a href="B-Mehr.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; font-size: 11px; color: #8B9AA8"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"></path></svg>Mehr</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#3FD5E8","options":["#3FD5E8","#C6F432","#FFB547","#A18CFF"],"section":"Farbe"},"verlauf":{"editor":"range","default":45,"min":0,"max":100,"step":5,"unit":"%","section":"Farbe"},"glow":{"editor":"boolean","default":true,"section":"Farbe"},"$preview":{"width":390,"height":1560}}'>
+class Component extends DCLogic {
+  rgb(h) { const n = parseInt(h.replace('#', ''), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  rgba(h, a) { const c = this.rgb(h); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+  renderVals() {
+    const p = this.props, a = p.accent ?? '#3FD5E8', v = (p.verlauf ?? 45) / 100, glow = p.glow ?? true;
+    const names = ['Liegestütz an der Wand', 'Liegestütz am Tisch', 'Liegestütz an der Sofakante', 'Liegestütz am Boden', 'Liegestütz mit erhöhten Füßen'];
+    const cur = 3;
+    const ladder = names.map((name, i) => {
+      const lv = i + 1;
+      return {
+        lv, name, current: lv === cur, settable: lv !== cur,
+        dotBg: lv < cur ? this.rgba(a, 0.25) : lv === cur ? a : '#1A242E',
+        dotFg: lv === cur ? '#04161A' : lv < cur ? '#E6EDF3' : '#8B9AA8',
+        dotShadow: lv === cur && glow ? '0 0 12px ' + this.rgba(a, 0.6) : 'none',
+        lineBg: lv === 5 ? 'transparent' : lv < cur ? this.rgba(a, 0.45) : '#1F2B36',
+        weight: lv === cur ? 600 : 400,
+        fg: lv > cur ? '#B7C3CE' : '#E6EDF3'
+      };
+    });
+    const bars = n => [1, 2, 3, 4, 5].map(i => ({ bg: i <= n ? a : '#1F2B36' }));
+    return {
+      accent: a, ladder, legs: bars(2), pull: bars(1),
+      rootBg: 'radial-gradient(120% 22% at 85% 0%, ' + this.rgba(a, 0.24 * v) + ', transparent 70%), radial-gradient(90% 18% at 0% 60%, ' + this.rgba('#7B6CF6', 0.14 * v) + ', transparent 70%), #0A0F14',
+      cardBg: 'linear-gradient(160deg, ' + this.rgba(a, 0.09 * v) + ' 0%, #121A22 42%, #0F161C 100%)',
+      chipBg: this.rgba(a, 0.12 + 0.1 * v),
+      textGlow: glow ? '0 0 18px ' + this.rgba(a, 0.55) : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>
