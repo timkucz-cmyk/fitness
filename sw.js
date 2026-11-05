@@ -1,5 +1,5 @@
 // Offline-Cache. Bei Änderungen an den Dateien VERSION erhöhen.
-const VERSION = 'fit-v2';
+const VERSION = 'fit-v3';
 const ASSETS = [
   './', './index.html', './app.css', './app.js', './figures.js', './exercises.js', './manifest.webmanifest',
   './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png',

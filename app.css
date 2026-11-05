@@ -216,6 +216,11 @@ input:focus-visible, select:focus-visible, .btn:focus-visible, button:focus-visi
 .wform label { font-size: 12px; color: var(--muted); }
 .wform input { min-height: 44px; font-size: 18px; padding: 0 10px; }
 .slot { font-size: 13px; color: var(--muted); }
+.bcard { padding: 14px; gap: 8px; }
+.bcard .brow { display: flex; gap: 10px; }
+.bcard .unitin { flex: 1; min-height: 44px; }
+.bcard .unitin input { min-height: 42px; font-size: 18px; }
+.meta.accent { color: var(--accent-ink); } .meta.good { color: var(--good); } .meta.bad { color: var(--bad); }
 
 /* Stufen-Balken */
 .lvlist { display: flex; flex-direction: column; gap: 14px; }

@@ -29,7 +29,18 @@ const mmss = s => `${Math.floor(s / 60)}:${pad(Math.max(0, Math.floor(s % 60)))}
 let S = load();
 
 function load() {
-  try { const s = JSON.parse(localStorage.getItem(KEY)); return s && s.version ? s : null; } catch { return null; }
+  try { const s = JSON.parse(localStorage.getItem(KEY)); return s && s.version ? migrate(s) : null; } catch { return null; }
+}
+// Ältere Stände: Bauchumfang aus den Tests in die Wochenmessungen übernehmen
+function migrate(s) {
+  if (!Array.isArray(s.waists)) {
+    s.waists = (s.tests || []).filter(t => t.v && t.v.waist != null).map(t => ({ date: t.date, cm: t.v.waist }));
+  }
+  return s;
+}
+function putWaist(date, cm) {
+  S.waists = S.waists.filter(w => w.date !== date); S.waists.push({ date, cm });
+  S.waists.sort((a, b) => a.date < b.date ? -1 : 1);
 }
 function save() {
   try { localStorage.setItem(KEY, JSON.stringify(S)); } catch { toast('Speichern nicht möglich – bitte exportieren'); }
@@ -38,7 +49,7 @@ function newState(p) {
   return {
     version: 1, created: Date.now(),
     profile: { start: ymd(), goalWeight: p.goalWeight, startTime: p.startTime, weeklyGoal: 3, rounds: 2, hasBar: p.hasBar, sound: true },
-    levels: p.levels, sessions: [], weights: [], tests: [], miniWeeks: [], lastExport: null, reentryAck: null, installHintOff: false,
+    levels: p.levels, sessions: [], weights: [], waists: [], tests: [], miniWeeks: [], lastExport: null, reentryAck: null, installHintOff: false,
   };
 }
 const sortSessions = () => S.sessions.sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.ts - b.ts);
@@ -271,6 +282,7 @@ function viewHome() {
     <form class="card wform" id="wform"><h2>Heute wiegen</h2><label for="kgIn">kg, nüchtern</label>
       <input id="kgIn" name="kg" inputmode="decimal" placeholder="${todayW ? fmt1(todayW.kg) : '00,0'}"><button class="btn sm" type="submit">${todayW ? 'Ändern' : 'Speichern'}</button></form>
   </div>
+  ${waistForm(today)}
   <button class="btn primary big split" data-act="start">Training starten <span>~${minutes} MIN</span></button>
   <div class="grid2">
     <button class="btn sec split" data-act="mini">Mini <span>5 MIN</span></button>
@@ -291,6 +303,43 @@ const ICON = {
 };
 const seg5 = lv => `<span class="seg5" aria-hidden="true">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= lv ? 'on' : ''}"></i>`).join('')}</span>`;
 const trendCls = t => t === null ? 'muted' : t < -0.7 ? 'warn' : t < -0.1 ? 'good' : 'muted';
+
+function waistForm(today) {
+  const last = S.waists[S.waists.length - 1], isToday = last && last.date === today;
+  const due = !last || diffDays(last.date, today) >= 7;
+  const meta = !last ? 'ERSTE MESSUNG' : isToday ? 'ERLEDIGT' : due ? 'FÄLLIG' : `NÄCHSTE AB ${fmtShort(addDays(last.date, 7))}`;
+  return `<form class="card bcard" id="bform"><div class="chead"><h2>Bauchumfang · wöchentlich</h2><span class="meta ${due ? 'accent' : ''}">${meta}</span></div>
+    <label for="cmIn" class="small">${last ? `${isToday ? 'Heute' : `Zuletzt ${fmtShort(last.date)}`}: <b class="mono">${fmtNum(last.cm)} cm</b>` : 'Noch keine Messung.'} <span class="muted">Morgens, auf Nabelhöhe, entspannt ausatmen.</span></label>
+    <div class="brow"><span class="unitin"><input id="cmIn" name="cm" inputmode="decimal" placeholder="${last ? fmtNum(last.cm) : '000'}"><small>CM</small></span><button class="btn sm" type="submit">${isToday ? 'Ändern' : 'Speichern'}</button></div></form>`;
+}
+
+function waistCard(list) {
+  const all = S.waists, first = all[0], last = all[all.length - 1];
+  let meta = '';
+  if (all.length > 1) {
+    const d = last.cm - first.cm;
+    meta = `<span class="meta ${d < 0 ? 'good' : d > 0 ? 'bad' : ''}">${d === 0 ? '±0' : `${d < 0 ? '−' : '+'}${fmtNum(Math.abs(d))}`} cm seit ${fmtShort(first.date)}</span>`;
+  }
+  let body = '<p class="muted small">Ab zwei Messungen erscheint hier der Verlauf. Eingabe auf „Heute“.</p>';
+  if (list.length >= 2) {
+    const W = 330, H = 140, L = 30, R = 8, T = 10, B = 20, base = H - B;
+    const d0 = list[0].date, d1 = list[list.length - 1].date, span = Math.max(1, diffDays(d0, d1));
+    const lo = Math.floor(Math.min(...list.map(p => p.cm)) - 1), hi = Math.ceil(Math.max(...list.map(p => p.cm)) + 1);
+    const x = d => L + diffDays(d0, d) / span * (W - L - R), y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+    let s = niceTicks(lo, hi).map(v => `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="0" y="${y(v) + 3.5}">${v}</text>`).join('');
+    s += `<text class="ax" x="${L}" y="${H - 4}">${fmtShort(d0)}</text><text class="ax" x="${W - R}" y="${H - 4}" text-anchor="end">${fmtShort(d1)}</text>`;
+    s += `<polyline class="line" points="${list.map(p => `${x(p.date).toFixed(1)},${y(p.cm).toFixed(1)}`).join(' ')}"/>`;
+    s += list.map(p => `<circle class="end" cx="${x(p.date).toFixed(1)}" cy="${y(p.cm).toFixed(1)}" r="3"/>`).join('');
+    const a = list[0], b = list[list.length - 1];
+    const pts = list.map(p => ({ cx: x(p.date), cy: y(p.cm), html: `<b>${fmtDate(p.date)}</b><br>${fmtNum(p.cm)} cm` }));
+    body = chart('waist', W, H, s, pts, T, base, `Bauchumfang ${b.cm < a.cm ? 'sinkt' : b.cm > a.cm ? 'steigt' : 'bleibt'} von ${fmtNum(a.cm)} auf ${fmtNum(b.cm)} cm`);
+  }
+  const ml = [...all].reverse().slice(0, 30).map(w =>
+    `<li><span>${fmtDate(w.date)}</span><span class="mono">${fmtNum(w.cm)} cm</span><button class="x" data-act="delWaist" data-date="${w.date}" aria-label="Messung vom ${fmtShort(w.date)} löschen">×</button></li>`).join('');
+  return `<section class="card"><div class="chead"><h2>Bauchumfang</h2>${meta}</div>
+    ${last ? `<div class="wsum"><span class="wval">${fmtNum(last.cm)}</span><span class="mono muted">cm</span></div>` : ''}
+    ${body}${ml ? `<details class="mess"><summary>Messungen</summary><ul class="plain">${ml}</ul></details>` : ''}</section>`;
+}
 
 function spark(ser) {
   const from = addDays(ser[ser.length - 1].date, -55), pts = ser.filter(p => p.date >= from);
@@ -453,6 +502,7 @@ function viewHistory() {
     ${weightChart(ser)}
     <p class="small text2">${trendText(t)}</p>
     ${wl ? `<details class="mess"><summary>Messungen</summary><ul class="plain">${wl}</ul></details>` : ''}</section>
+  ${waistCard(RANGE ? S.waists.filter(w => w.date >= addDays(ymd(), -7 * RANGE)) : S.waists)}
   <section class="card"><h2>Wochen mit ≥ ${goal} Einheiten</h2>
     <div class="stats"><div><b>${q12.ok}<span>/${q12.tot}</span></b><small>letzte 12 Wo</small></div><div><b>${qAll.ok}<span>/${qAll.tot}</span></b><small>letzte 52 Wo</small></div><div><b>${together}</b><small>gemeinsam</small></div></div>
     ${weekTiles(RANGE)}
@@ -558,6 +608,7 @@ function dlgTest() {
     const v = {}; TESTS.forEach(t => { v[t.id] = num(fd.get(t.id)); });
     if (Object.values(v).every(x => x === null)) { toast('Keine Werte eingetragen'); return false; }
     S.tests.push({ date: ymd(), block: S.tests.length ? blockInfo().block : 0, v, pushStage: +fd.get('pushStage') });
+    if (v.waist !== null) putWaist(ymd(), v.waist);
     save(); render(); toast('Test gespeichert');
   });
 }
@@ -597,7 +648,7 @@ function doImport(file) {
       const d = JSON.parse(rd.result);
       if (!d || d.version !== 1 || !d.profile || !Array.isArray(d.sessions)) throw new Error();
       if (!confirm('Import ersetzt alle Daten auf diesem Gerät. Fortfahren?')) return;
-      S = d; save(); render(); toast('Import abgeschlossen');
+      S = migrate(d); save(); render(); toast('Import abgeschlossen');
     } catch { toast('Datei ist kein gültiges Backup'); }
   };
   rd.readAsText(file);
@@ -884,6 +935,12 @@ document.addEventListener('click', e => {
       toast('Eintrag gelöscht', () => { S.sessions.push(old); sortSessions(); save(); render(); });
       break;
     }
+    case 'delWaist': {
+      const i = S.waists.findIndex(x => x.date === b.dataset.date); if (i < 0) break;
+      const [old] = S.waists.splice(i, 1); save(); render();
+      toast('Messung gelöscht', () => { putWaist(old.date, old.cm); save(); render(); });
+      break;
+    }
     case 'delWeight': {
       const i = S.weights.findIndex(x => x.date === b.dataset.date); if (i < 0) break;
       const [old] = S.weights.splice(i, 1); save(); render();
@@ -912,6 +969,11 @@ document.addEventListener('submit', e => {
     if (!kg || kg < 30 || kg > 300) { toast('Bitte Gewicht in kg eingeben'); return; }
     const today = ymd(); S.weights = S.weights.filter(w => w.date !== today); S.weights.push({ date: today, kg });
     save(); render(); toast('Gewicht gespeichert');
+  } else if (e.target.id === 'bform') {
+    e.preventDefault();
+    const cm = num(new FormData(e.target).get('cm'));
+    if (!cm || cm < 40 || cm > 250) { toast('Bitte Umfang in cm eingeben'); return; }
+    putWaist(ymd(), cm); save(); render(); toast('Bauchumfang gespeichert');
   }
 });
 
